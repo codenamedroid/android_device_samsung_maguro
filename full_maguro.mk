@@ -21,8 +21,8 @@
 # lines, full and maguro, hence its name.
 #
 
-# Get the long list of APNs
-# PRODUCT_COPY_FILES := device/sample/etc/apns-full-conf.xml:system/etc/apns-conf.xml
+# Release name
+PRODUCT_RELEASE_NAME := GN-GSM
 
 # Inherit from those products. Most specific first.
 $(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base_telephony.mk)
@@ -31,9 +31,16 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base_telephony.mk)
 # Inherit from maguro device
 $(call inherit-product, device/samsung/maguro/device.mk)
 
+# Get the long list of APNs
+$(call inherit-product, vendor/cna/configs/apns.mk)
+
 # Set those variables here to overwrite the inherited values.
 PRODUCT_NAME := full_maguro
 PRODUCT_DEVICE := maguro
-PRODUCT_BRAND := Android
-PRODUCT_MODEL := AOSP on Maguro
+PRODUCT_BRAND := google
+PRODUCT_MODEL := Galaxy Nexus
+PRODUCT_MANUFACTURER := Samsung
 PRODUCT_RESTRICT_VENDOR_FILES := false
+
+#Set build fingerprint / ID / Product Name ect.
+PRODUCT_BUILD_PROP_OVERRIDES += PRODUCT_NAME=yakju BUILD_FINGERPRINT="google/yakju/maguro:4.3/JWR66Y/776638:user/release-keys" PRIVATE_BUILD_DESC="yakju-user 4.3 JWR66Y 776638 release-keys"
